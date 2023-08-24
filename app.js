@@ -19,11 +19,11 @@ function playRound(playerSelection, computerSelection) {
     (lowerCasePlayerSelection === 'scissors' && computerSelection === 'paper')
   ) {
     return (
-      'You win, ' + lowerCasePlayerSelection + 'beats ' + computerSelection
+      'You win, ' + lowerCasePlayerSelection + ' beats ' + computerSelection
     );
   } else {
     return (
-      'You loose, ' + computerSelection + 'beats ' + lowerCasePlayerSelection
+      'You loose, ' + computerSelection + ' beats ' + lowerCasePlayerSelection
     );
   }
 }
@@ -31,22 +31,25 @@ function playRound(playerSelection, computerSelection) {
 function game() {
   let playerScore = 0;
   let computerScore = 0;
+  const results = [];
+
   for (let i = 0; i < 5; i++) {
-    const playerSelection = 'rock';
+    const playerSelection = prompt('Rock, paper or scissors?');
     const computerSelection = getComputerChoice();
     const roundResult = playRound(playerSelection, computerSelection);
-    console.log(roundResult);
+    results.push(roundResult);
 
     if (roundResult.includes('win')) {
       playerScore++;
-      console.log('Player score:', playerScore);
+      results.push('Player score:', playerScore);
     } else if (roundResult.includes('loose')) {
       computerScore++;
-      console.log('Computer score:', playerScore);
+      results.push('Computer score:', playerScore);
     }
   }
 
-  console.log(`FInal score: Player ${playerScore} - Computer ${computerScore}`);
+  console.log(`Final score: Player ${playerScore} - Computer ${computerScore}`);
+  console.log(results.join('\n'));
 }
 
 game();
