@@ -1,3 +1,4 @@
+// Choice array which stores the values that the computer has to choose from
 const choice = ['rock', 'paper', 'scissors'];
 
 // Randomly returns an item from the 'choice' array.
@@ -28,10 +29,13 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
+// Game function
 function game() {
+  // variables for scoring
   let playerScore = 0;
   let computerScore = 0;
   const results = [];
+  console.log(results);
 
   for (let i = 0; i < 5; i++) {
     const playerSelection = prompt('Rock, paper or scissors?');
@@ -47,9 +51,9 @@ function game() {
       results.push('Computer score:', playerScore);
     }
   }
-
+  // Log the final results
   console.log(`Final score: Player ${playerScore} - Computer ${computerScore}`);
-  console.log(results.join('\n'));
 }
 
+// Calls the game function
 game();
