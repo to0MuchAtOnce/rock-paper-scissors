@@ -48,7 +48,7 @@ function game() {
     console.log(results);
 
     // First player to 5 points wins based on the below condition
-    while (playerScore < 5 || computerScore < 5) {
+    while (playerScore < 5 && computerScore < 5) {
         const playerSelection = prompt('Rock, paper or scissors?');
         const computerSelection = getComputerChoice();
         const roundResult = playRound(playerSelection, computerSelection);
@@ -61,10 +61,6 @@ function game() {
         } else if (roundResult.includes('loose')) {
             computerScore++;
             results.push('Computer score:', playerScore);
-        }
-
-        if (playerScore === 5 || computerScore === 5) {
-            break;
         }
     }
     // Log the final results
