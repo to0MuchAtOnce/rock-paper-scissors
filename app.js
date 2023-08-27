@@ -11,8 +11,9 @@ function getComputerChoice() {
 
 // Play 1 round of the game
 function playRound(playerSelection, computerSelection) {
-    // convert all user input to lower case, making it possible for user to type captial letters
+    // Convert all user input to lower case, making it possible for user to type captial letters
     const lowerCasePlayerSelection = playerSelection.toLowerCase();
+    // Main game logic compares both answers and returns relevant statement
     if (lowerCasePlayerSelection === computerSelection) {
         return "It's a draw";
     } else if (
@@ -23,6 +24,7 @@ function playRound(playerSelection, computerSelection) {
         (lowerCasePlayerSelection === 'scissors' &&
             computerSelection === 'paper')
     ) {
+        // Returns concatenation of the completed round
         return (
             'You win, ' +
             lowerCasePlayerSelection +
@@ -41,7 +43,7 @@ function playRound(playerSelection, computerSelection) {
 
 // Game function handles scores, results and amount of rounds to play
 function game() {
-    // variables for scoring
+    // Variables for scoring
     let playerScore = 0;
     let computerScore = 0;
     const results = [];
