@@ -1,3 +1,6 @@
+const buttons = document.querySelectorAll('.btn');
+const container = document.querySelector('.container');
+
 // Choice array which stores the values that the computer has to choose from
 const choice = ['rock', 'paper', 'scissors'];
 
@@ -12,7 +15,7 @@ function getComputerChoice() {
 // Play 1 round of the game
 function playRound(playerSelection, computerSelection) {
     // Convert all user input to lower case, making it possible for user to type captial letters
-    const lowerCasePlayerSelection = playerSelection.toLowerCase();
+    const lowerCasePlayerSelection = String(playerSelection).toLowerCase();
     // Main game logic compares both answers and returns relevant statement
     if (lowerCasePlayerSelection === computerSelection) {
         return "It's a draw";
@@ -47,11 +50,11 @@ function game() {
     let playerScore = 0;
     let computerScore = 0;
     const results = [];
-    console.log(results);
+    // console.log(results);
 
     // First player to 5 points wins based on the below condition
-    while (playerScore < 5 && computerScore < 5) {
-        const playerSelection = prompt('Rock, paper or scissors?');
+    while (playerScore && computerScore) {
+        // const playerSelection = prompt('Rock, paper or scissors?');
         const computerSelection = getComputerChoice();
         const roundResult = playRound(playerSelection, computerSelection);
         results.push(roundResult);
@@ -66,10 +69,23 @@ function game() {
         }
     }
     // Log the final results
-    console.log(
-        `Final score: Player ${playerScore} - Computer ${computerScore}`
-    );
+    // console.log(
+    //     `Final score: Player ${playerScore} - Computer ${computerScore}`
+    // );
 }
+// Event listener to handle player and computer choices.
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+    console.log('Player:', button.textContent)
+    // PlayerSelection is === to the textContent of the button.
+    const playerSelection = button.textContent;
+    const computerSelection = getComputerChoice();
+    const result = playRound(playerSelection, computerSelection);
+    const h3 = document.createElement('h3');
+    h3.textContent = result;
+    container.appendChild(h3);
+    });
+}); 
 
 // Calls the game function
 game();
