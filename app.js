@@ -1,5 +1,8 @@
 const buttons = document.querySelectorAll('.btn');
 const container = document.querySelector('.container');
+const roundResult = document.querySelector('.round-result');
+const storePlayerScore = document.querySelector('.player-score');
+const storeComputerScore = document.querySelector('.computer-score');
 
 // Choice array which stores the values that the computer has to choose from
 const choice = ['rock', 'paper', 'scissors'];
@@ -8,7 +11,6 @@ const choice = ['rock', 'paper', 'scissors'];
 function getComputerChoice() {
     const random = Math.floor(Math.random() * choice.length);
     const computerSelection = choice[random];
-    console.log('Computer:', computerSelection);
     return computerSelection;
 }
 
@@ -50,40 +52,38 @@ function game() {
     let playerScore = 0;
     let computerScore = 0;
     const results = [];
-    // console.log(results);
 
     // First player to 5 points wins based on the below condition
-    while (playerScore && computerScore) {
+    while (playerScore < 5 && computerScore < 5) {
         // const playerSelection = prompt('Rock, paper or scissors?');
         const computerSelection = getComputerChoice();
-        const roundResult = playRound(playerSelection, computerSelection);
+        const roundResult = playRound(computerSelection);
         results.push(roundResult);
 
         // Allocates scores to relevant players
         if (roundResult.includes('win')) {
             playerScore++;
             results.push('Player score:', playerScore);
+            storePlayerScore.textContent = playerScore;
+            console.log('round result:', playerScore)
         } else if (roundResult.includes('loose')) {
             computerScore++;
             results.push('Computer score:', playerScore);
+            storeComputerScore.textContent = computerScore;
+            console.log('computer score', computerScore)
         }
     }
-    // Log the final results
-    // console.log(
-    //     `Final score: Player ${playerScore} - Computer ${computerScore}`
-    // );
 }
 // Event listener to handle player and computer choices.
 buttons.forEach((button) => {
     button.addEventListener('click', () => {
-    console.log('Player:', button.textContent)
     // PlayerSelection is === to the textContent of the button.
     const playerSelection = button.textContent;
     const computerSelection = getComputerChoice();
     const result = playRound(playerSelection, computerSelection);
-    const h3 = document.createElement('h3');
-    h3.textContent = result;
-    container.appendChild(h3);
+
+    //Update the h3 in index.html with the result
+    roundResult.textContent = result;
     });
 }); 
 
