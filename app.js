@@ -4,6 +4,11 @@ const roundResult = document.querySelector('.round-result');
 const storePlayerScore = document.querySelector('.player-score');
 const storeComputerScore = document.querySelector('.computer-score');
 
+
+let playerScore = 0;
+let computerScore = 0;
+let gameEnded = false; 
+
 // Choice array which stores the values that the computer has to choose from
 const choice = ['rock', 'paper', 'scissors'];
 
@@ -16,8 +21,8 @@ function getComputerChoice() {
 
 // Play 1 round of the game
 function playRound(playerSelection, computerSelection) {
-    // Convert all user input to lower case, making it possible for user to type captial letters
-    const lowerCasePlayerSelection = String(playerSelection).toLowerCase();
+    // Convert all user input to lowercase, making it possible for the user to type capital letters
+    const lowerCasePlayerSelection = playerSelection.toLowerCase();
     // Main game logic compares both answers and returns relevant statement
     if (lowerCasePlayerSelection === computerSelection) {
         return "It's a draw";
@@ -38,7 +43,7 @@ function playRound(playerSelection, computerSelection) {
         );
     } else {
         return (
-            'You loose, ' +
+            'You lose, ' +
             computerSelection +
             ' beats ' +
             lowerCasePlayerSelection
@@ -49,43 +54,48 @@ function playRound(playerSelection, computerSelection) {
 // Game function handles scores, results and amount of rounds to play
 function game() {
     // Variables for scoring
-    let playerScore = 0;
-    let computerScore = 0;
-    const results = [];
 
-    // First player to 5 points wins based on the below condition
-    while (playerScore < 5 && computerScore < 5) {
-        // const playerSelection = prompt('Rock, paper or scissors?');
-        const computerSelection = getComputerChoice();
-        const roundResult = playRound(computerSelection);
-        results.push(roundResult);
+        
+            if (playerScore === 5) {
+                const playerGameResult = document.createElement('h3');
+                playerGameResult.textContent = 'Well played, you win!';
+                container.appendChild(playerGameResult);
+                gameEnded = true;
+            } else if (computerScore === 5) {
+                const computerGameResult = document.createElement('h3');
+                computerGameResult.textContent = 'You lose, better luck next time!';
+                container.appendChild(computerGameResult);
+                gameEnded = true;
+            }
+          }
 
-        // Allocates scores to relevant players
-        if (roundResult.includes('win')) {
-            playerScore++;
-            results.push('Player score:', playerScore);
-            storePlayerScore.textContent = playerScore;
-            console.log('round result:', playerScore)
-        } else if (roundResult.includes('loose')) {
-            computerScore++;
-            results.push('Computer score:', playerScore);
-            storeComputerScore.textContent = computerScore;
-            console.log('computer score', computerScore)
-        }
-    }
-}
-// Event listener to handle player and computer choices.
-buttons.forEach((button) => {
-    button.addEventListener('click', () => {
-    // PlayerSelection is === to the textContent of the button.
-    const playerSelection = button.textContent;
-    const computerSelection = getComputerChoice();
-    const result = playRound(playerSelection, computerSelection);
+    // Event listener to handle player and computer choices.
+    buttons.forEach((button) => {
+        button.addEventListener('click', () => {
 
-    //Update the h3 in index.html with the result
-    roundResult.textContent = result;
+            if (!gameEnded) {
+                const playerSelection = button.textContent;
+                const computerSelection = getComputerChoice();
+                const result = playRound(playerSelection, computerSelection);
+
+                // Update the h3 in index.html with the result
+                roundResult.textContent = result;
+
+                // Allocates scores to relevant players
+                if (result.includes('win')) {
+                    playerScore++;
+                    storePlayerScore.textContent = 'Player Score: ' + playerScore;
+                } else if (result.includes('lose')) {
+                    computerScore++;
+                    storeComputerScore.textContent = 'Computer Score: ' + computerScore;
+                }
+                if (playerScore === 5 || computerScore === 5) {
+                    gameEnded = true;
+                    game();
+                }
+            }
+        });
     });
-}); 
 
-// Calls the game function
+// Calls the game function when the page loads
 game();
