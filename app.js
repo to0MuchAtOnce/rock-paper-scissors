@@ -58,6 +58,7 @@ function game() {
   }
 }
 
+// Resets scores to 0 and unappends game ended message
 resetBtn.addEventListener("click", () => {
   if (gameEnded) {
     playerScore = 0;
@@ -76,7 +77,7 @@ resetBtn.addEventListener("click", () => {
   }
 });
 
-// Event listener to handle player and computer choices.
+// Handles player and computer choices.
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
     if (!gameEnded) {
