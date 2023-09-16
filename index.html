@@ -3,25 +3,42 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <link rel="stylesheet" href="style.css" />
     <title>Rock, Paper, Scissors</title>
   </head>
 
   <body>
-    <h1>Let's Play!</h1>
-    <div class="buttons">
-      <button class="btn btn-rock">Rock</button>
-      <button class="btn btn-paper">Paper</button>
-      <button class="btn btn-scissors">Scissors</button>
-    </div>
-    <div class="reset-game">
-      <button class="reset">Reset</button>
-    </div>
-    <div class="container">
-      <h3 class="round-result"></h3>
-      <div class="player-score">Player: 0</div>
-      <div class="computer-score">Computer: 0</div>
-    </div>
+    <header class="header">
+      <div class="logo">
+        <span class="logo-rock">Rock</span>
+        <span class="logo-seperator">|</span>
+        <span class="logo-paper">Paper</span>
+        <span class="logo-seperator">|</span>
+        <span class="logo-scissors">Scissors</span>
+      </div>
+      <div class="info-icon">
+        <i class="ph-light ph-info"></i>
+      </div>
+    </header>
+    <main class="main">
+      <h1>Make a choice to start!</h1>
+      <div class="buttons">
+        <button class="btn btn-rock">👊</button>
+        <button class="btn btn-paper">🫱</button>
+        <button class="btn btn-scissors">✌️</button>
+      </div>
+      <div class="reset-game">
+        <button class="play-again-btn">Play again!</button>
+      </div>
+      <div class="container">
+        <h3 class="round-result"></h3>
+        <div class="score-container">
+          <div class="player-score"><span>You</span> 0</div>
+          <div class="computer-score"><span>Computer</span> 0</div>
+        </div>
+      </div>
+    </main>
   </body>
   <script src="app.js"></script>
 </html>

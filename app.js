@@ -1,5 +1,5 @@
 const buttons = document.querySelectorAll(".btn");
-const resetBtn = document.querySelector(".reset");
+const resetBtn = document.querySelector(".play-again-btn");
 const container = document.querySelector(".container");
 const roundResult = document.querySelector(".round-result");
 const storePlayerScore = document.querySelector(".player-score");
@@ -13,7 +13,7 @@ let computerScore = 0;
 let gameEnded = false;
 
 // Choice array which stores the values that the computer has to choose from
-const choice = ["rock", "paper", "scissors"];
+const choice = ["👊", "🫱", "✌️"];
 
 // Randomly returns an item from the 'choice' array.
 function getComputerChoice() {
@@ -22,26 +22,28 @@ function getComputerChoice() {
   return computerSelection;
 }
 
-// Play 1 round of the game
+const emojiToWord = {
+  "👊": "rock",
+  "🫱": "paper",
+  "✌️": "scissors",
+};
+
 function playRound(playerSelection, computerSelection) {
-  // Convert all user input to lowercase, making it possible for the user to type capital letters
   const lowerCasePlayerSelection = playerSelection.toLowerCase();
-  // Main game logic compares both answers and returns relevant statement
+  const playerChoiceWord = emojiToWord[lowerCasePlayerSelection];
+  const computerChoiceWord = emojiToWord[computerSelection];
+
   if (lowerCasePlayerSelection === computerSelection) {
     return "It's a draw";
   } else if (
-    (lowerCasePlayerSelection === "rock" && computerSelection === "scissors") ||
-    (lowerCasePlayerSelection === "paper" && computerSelection === "rock") ||
-    (lowerCasePlayerSelection === "scissors" && computerSelection === "paper")
+    (lowerCasePlayerSelection === "👊" && computerSelection === "✌️") ||
+    (lowerCasePlayerSelection === "🫱" && computerSelection === "👊") ||
+    (lowerCasePlayerSelection === "✌️" && computerSelection === "🫱")
   ) {
-    // Returns concatenation of the completed round
-    return (
-      "You win, " + lowerCasePlayerSelection + " beats " + computerSelection
-    );
+    // Returns concatenation of the completed round as template literals
+    return `You win, ${playerChoiceWord} beats ${computerChoiceWord}`;
   } else {
-    return (
-      "You lose, " + computerSelection + " beats " + lowerCasePlayerSelection
-    );
+    return `You lose, ${computerChoiceWord} beats ${playerChoiceWord}`;
   }
 }
 
@@ -51,10 +53,12 @@ function game() {
     playerGameResult.textContent = "Well played, you win!";
     container.appendChild(playerGameResult);
     gameEnded = true;
+    resetBtn.classList.remove("hidden");
   } else if (computerScore === 5) {
     computerGameResult.textContent = "You lose, better luck next time!";
     container.appendChild(computerGameResult);
     gameEnded = true;
+    resetBtn.classList.remove("hidden");
   }
 }
 
@@ -74,6 +78,7 @@ resetBtn.addEventListener("click", () => {
       computerGameResult.parentNode.removeChild(computerGameResult);
     }
     gameEnded = false;
+    resetBtn.classList.add("hidden");
   }
 });
 
@@ -104,5 +109,4 @@ buttons.forEach((button) => {
   });
 });
 
-// Calls the game function when the page loads
 game();

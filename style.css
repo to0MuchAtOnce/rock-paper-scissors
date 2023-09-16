@@ -1,3 +1,13 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;600&display=swap");
+
+:root {
+  --white: #fff;
+  --light-green: #72bd9e;
+  --mid-grey: #9d9d9d;
+  --mid-yellow: #f0ca42;
+  --salmon: #f59c80;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -6,9 +16,87 @@
 
 body {
   background: #272931;
-  color: #bab4b4;
+  color: var(--white);
+  font-family: "Inter";
+  font-weight: 400;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.25rem;
+  font-weight: 300;
+  margin: 1.25rem;
+}
+
+.header .logo {
+  cursor: default;
+}
+
+.header .logo-rock {
+  color: var(--light-green);
+}
+
+.header .logo-seperator {
+  color: var(--mid-grey);
+}
+
+.header .logo-paper {
+  color: var(--white);
+}
+
+.header .logo-scissors {
+  color: var(--mid-yellow);
+}
+
+.info-icon {
+  cursor: pointer;
+  color: var(--mid-grey);
+  font-size: 2rem;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.play-again-btn {
+  background: var(--salmon);
+  border: 0;
+  border-radius: 6px;
+  padding: 0.5rem;
+}
+
+.play-again-btn:active {
+  transform: scale(0.98);
+}
+
+.score-container {
+  display: flex;
+}
+
+.buttons,
+.btn {
+  cursor: pointer;
+  font-size: 3rem;
+}
+
+.btn:hover {
+  opacity: 0.8;
+}
+
+.btn {
+  background: 0;
+  border: 0;
 }
 
 .btn:active {
-  transform:scale(1.1);
+  transform: scale(1.1);
+}
+
+.hidden {
+  display: none;
 }
