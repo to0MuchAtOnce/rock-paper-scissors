@@ -54,11 +54,13 @@ function game() {
     container.appendChild(playerGameResult);
     gameEnded = true;
     resetBtn.classList.remove("hidden");
+    resetBtn.style.visibility = "visible";
   } else if (computerScore === 5) {
     computerGameResult.textContent = "You lose, better luck next time!";
     container.appendChild(computerGameResult);
     gameEnded = true;
     resetBtn.classList.remove("hidden");
+    resetBtn.style.visibility = "visible";
   }
 }
 
@@ -79,6 +81,7 @@ resetBtn.addEventListener("click", () => {
     }
     gameEnded = false;
     resetBtn.classList.add("hidden");
+    resetBtn.style.visibility = "hidden";
   }
 });
 

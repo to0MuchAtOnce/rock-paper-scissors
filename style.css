@@ -4,6 +4,7 @@
   --white: #fff;
   --light-green: #72bd9e;
   --mid-grey: #9d9d9d;
+  --bg: #272727;
   --mid-yellow: #f0ca42;
   --salmon: #f59c80;
 }
@@ -15,10 +16,13 @@
 }
 
 body {
-  background: #272931;
+  background: var(--bg);
   color: var(--white);
   font-family: "Inter";
   font-weight: 400;
+  height: 100vh;
+  min-width: 100%;
+  overflow: hidden;
 }
 
 .header {
@@ -55,19 +59,34 @@ body {
   font-size: 2rem;
 }
 
+.info-icon:hover {
+  color: var(--white);
+  transition: 0.15s ease-in-out;
+}
+
 .main {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  height: 100vh;
+}
+
+.heading-1 {
+  margin-top: 10rem;
 }
 
 .play-again-btn {
   background: var(--salmon);
+  font-size: 18px;
   border: 0;
   border-radius: 6px;
-  padding: 0.5rem;
+  cursor: pointer;
+  padding: 1rem 1.8rem;
+  margin-top: 1.5rem;
+  visibility: hidden;
+}
+
+.play-again-btn .hidden {
+  display: none;
 }
 
 .play-again-btn:active {
@@ -78,25 +97,39 @@ body {
   display: flex;
 }
 
+.buttons {
+  gap: 6rem;
+}
+
 .buttons,
 .btn {
+  display: flex;
   cursor: pointer;
-  font-size: 3rem;
-}
-
-.btn:hover {
-  opacity: 0.8;
-}
-
-.btn {
+  font-size: 120px;
   background: 0;
   border: 0;
 }
 
-.btn:active {
-  transform: scale(1.1);
+.btn-rock:active {
+  transform: scale(1.05);
 }
 
-.hidden {
-  display: none;
+.btn-paper {
+  transform: rotate(240deg);
+}
+
+.btn-paper:active {
+  transform: rotate(240deg) scale(1.05);
+}
+
+.btn-scissors {
+  transform: rotate(-30deg);
+}
+
+.btn-scissors:active {
+  transform: rotate(-30deg) scale(1.05);
+}
+
+.btn:hover {
+  opacity: 0.8;
 }
