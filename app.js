@@ -4,6 +4,8 @@ const container = document.querySelector(".container");
 const roundResult = document.querySelector(".round-result");
 const storePlayerScore = document.querySelector(".player-score");
 const storeComputerScore = document.querySelector(".computer-score");
+const playerScoreNum = document.querySelector(".player-score-num");
+const computerScoreNum = document.querySelector(".computer-score-num");
 
 const computerGameResult = document.createElement("h3");
 const playerGameResult = document.createElement("h3");
@@ -55,12 +57,14 @@ function game() {
     gameEnded = true;
     resetBtn.classList.remove("hidden");
     resetBtn.style.visibility = "visible";
+    // playerScoreNum.textContent = playerScore;
   } else if (computerScore === 5) {
     computerGameResult.textContent = "You lose, better luck next time!";
     container.appendChild(computerGameResult);
     gameEnded = true;
     resetBtn.classList.remove("hidden");
     resetBtn.style.visibility = "visible";
+    // computerScoreNum.textContent = playerScore;
   }
 }
 
@@ -69,8 +73,8 @@ resetBtn.addEventListener("click", () => {
   if (gameEnded) {
     playerScore = 0;
     computerScore = 0;
-    storePlayerScore.textContent = "Player score: " + playerScore;
-    storeComputerScore.textContent = "Computer score: " + computerScore;
+    playerScoreNum.textContent = playerScore;
+    computerScoreNum.textContent = computerScore;
 
     if (playerGameResult && playerGameResult.parentNode) {
       playerGameResult.parentNode.removeChild(playerGameResult);
@@ -99,10 +103,10 @@ buttons.forEach((button) => {
       // Allocates scores to relevant players
       if (result.includes("win")) {
         playerScore++;
-        storePlayerScore.textContent = "Player Score: " + playerScore;
+        playerScoreNum.textContent = playerScore;
       } else if (result.includes("lose")) {
         computerScore++;
-        storeComputerScore.textContent = "Computer Score: " + computerScore;
+        computerScoreNum.textContent = computerScore;
       }
       if (playerScore === 5 || computerScore === 5) {
         gameEnded = true;

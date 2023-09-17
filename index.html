@@ -26,8 +26,31 @@
       </div>
     </header>
 
+    <div class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-heading">
+            Welcome to <span style="color: var(--light-green)">Rock</span>
+            <span>paper</span>
+            <span style="color: var(--mid-yellow)">scissors</span>
+          </h3>
+          <div class="cross-icon">
+            <i class="ph-light ph-x-circle"></i>
+          </div>
+        </div>
+        <p class="modal-para-1">
+          Choose one of the three hand signals to start the game. The first to
+          score 5 points wins the game.
+        </p>
+        <p class="modal-para-2">
+          When the game is over, press Play again to start over.
+        </p>
+        <p class="modal-para-3">Have fun, and good luck!.</p>
+      </div>
+    </div>
+
     <main class="main">
-      <h1 class="heading-1">Make a choice to start!</h1>
+      <h1 class="heading-1 round-result">Make a choice to start!</h1>
       <div class="reset-game">
         <button class="play-again-btn">Play again!</button>
       </div>
@@ -39,10 +62,16 @@
       </div>
 
       <div class="container">
-        <h3 class="round-result"></h3>
+        <!-- <h3 class="round-result"></h3> -->
         <div class="score-container">
-          <div class="player-score"><span class="">You</span> 0</div>
-          <div class="computer-score"><span>Computer</span> 0</div>
+          <div class="player-score">
+            <span class="player-score-label">You</span>
+            <span class="player-score-num">0</span>
+          </div>
+          <div class="computer-score">
+            <span class="computer-score-label">Computer</span>
+            <span class="computer-score-num">0</span>
+          </div>
         </div>
       </div>
     </main>
