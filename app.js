@@ -1,11 +1,14 @@
 const buttons = document.querySelectorAll(".btn");
-const resetBtn = document.querySelector(".play-again-btn");
 const container = document.querySelector(".container");
+const computerScoreNum = document.querySelector(".computer-score-num");
+const resetBtn = document.querySelector(".play-again-btn");
 const roundResult = document.querySelector(".round-result");
 const storePlayerScore = document.querySelector(".player-score");
 const storeComputerScore = document.querySelector(".computer-score");
 const playerScoreNum = document.querySelector(".player-score-num");
-const computerScoreNum = document.querySelector(".computer-score-num");
+const modal = document.querySelector(".modal");
+const infoIcon = document.querySelector(".ph-info");
+const crossIcon = document.querySelector(".ph-x-circle");
 
 const computerGameResult = document.createElement("h3");
 const playerGameResult = document.createElement("h3");
@@ -67,6 +70,14 @@ function game() {
     // computerScoreNum.textContent = playerScore;
   }
 }
+
+infoIcon.addEventListener("click", () => {
+  modal.style.display = "block";
+});
+
+crossIcon.addEventListener("click", () => {
+  modal.style.display = "none";
+});
 
 // Resets scores to 0 and unappends game ended message
 resetBtn.addEventListener("click", () => {

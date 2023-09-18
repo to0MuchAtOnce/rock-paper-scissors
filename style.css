@@ -64,12 +64,16 @@ body {
 
 .cross-icon,
 .info-icon {
-  cursor: pointer;
   color: var(--mid-grey);
 }
 
-.cross-icon:hover,
-.info-icon:hover {
+.ph-x-circle,
+.ph-info {
+  cursor: pointer;
+}
+
+.ph-x-circle:hover,
+.ph-info:hover {
   color: var(--white);
   transition: 0.15s ease-in-out;
 }
@@ -153,7 +157,7 @@ body {
 
 .buttons {
   gap: 10rem;
-  margin-bottom: 20rem;
+  margin-bottom: 5rem;
 }
 
 .buttons,
@@ -220,4 +224,37 @@ body {
   color: var(--mid-grey);
   padding: 2rem;
   font-size: 28px;
+}
+
+@media screen and (max-width: 700px) {
+  .heading-1 {
+    font-size: 30px;
+  }
+
+  .play-again-btn {
+    padding: 0.75rem 1.2rem;
+  }
+
+  .buttons {
+    gap: 4rem;
+  }
+
+  .buttons,
+  .btn {
+    font-size: 90px;
+  }
+
+  .player-score-label,
+  .computer-score-label {
+    font-size: 16px;
+  }
+
+  .player-score-num,
+  .computer-score-num {
+    padding: 1.5rem;
+  }
+
+  .score-container {
+    margin: 3rem;
+  }
 }
