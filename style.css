@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;600&display=swap");
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -20,7 +21,6 @@ body {
   color: var(--white);
   font-family: "Inter";
   font-weight: 400;
-  height: 100vh;
   min-width: 100%;
   margin: 0 auto;
   overflow: hidden;
@@ -31,7 +31,7 @@ body {
   justify-content: space-between;
   font-size: 1.25rem;
   font-weight: 300;
-  margin: 1.25rem;
+  /* margin: 1.5rem; */
 }
 
 .header .logo {
@@ -123,7 +123,6 @@ body {
   display: flex;
   flex-direction: column;
   max-width: 1097px;
-  margin: 0 auto;
 }
 
 .heading-1 {
@@ -156,14 +155,13 @@ body {
 }
 
 .buttons {
+  display: flex;
+  justify-content: center;
   gap: 10rem;
   margin-bottom: 5rem;
 }
 
-.buttons,
 .btn {
-  display: flex;
-  justify-content: center;
   cursor: pointer;
   font-size: 120px;
   background: 0;
@@ -225,7 +223,6 @@ body {
   padding: 2rem;
   font-size: 28px;
 }
-
 @media screen and (max-width: 700px) {
   .heading-1 {
     font-size: 30px;
