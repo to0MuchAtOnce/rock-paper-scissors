@@ -6,6 +6,11 @@
   padding: 0;
 }
 
+html {
+  max-width: 1097px;
+  margin: 0 auto;
+}
+
 :root {
   --white: #fff;
   --light-green: #72bd9e;
@@ -31,7 +36,7 @@ body {
   justify-content: space-between;
   font-size: 1.25rem;
   font-weight: 300;
-  /* margin: 1.5rem; */
+  margin: 1.5rem;
 }
 
 .header .logo {
@@ -78,6 +83,12 @@ body {
   transition: 0.15s ease-in-out;
 }
 
+.main {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
 .modal {
   display: none;
   position: fixed;
@@ -117,12 +128,6 @@ body {
 .modal-para-3 {
   font-size: 18px;
   margin-bottom: 1rem;
-}
-
-.main {
-  display: flex;
-  flex-direction: column;
-  max-width: 1097px;
 }
 
 .heading-1 {
@@ -223,6 +228,7 @@ body {
   padding: 2rem;
   font-size: 28px;
 }
+
 @media screen and (max-width: 700px) {
   .heading-1 {
     font-size: 30px;
@@ -253,5 +259,30 @@ body {
 
   .score-container {
     margin: 3rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .heading-1 {
+    font-size: 28px;
+  }
+
+  .buttons,
+  .btn {
+    font-size: 80px;
+  }
+}
+
+@media screen and (max-width: 470px) {
+  .buttons,
+  .btn {
+    font-size: 70px;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .buttons,
+  .btn {
+    font-size: 60px;
   }
 }
