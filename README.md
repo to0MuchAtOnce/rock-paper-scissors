@@ -7,7 +7,8 @@ Here attempt at the popular game rock, paper, scissors.
 * I want it to have a user interface.
 
 ## Did you achieve it? 
-So far the functionality is all there but the game doesn't have a user interface yet.
+Yes. I created the game from scratch and added the UI.
+I refactored the code to improve it.
 
 
   
