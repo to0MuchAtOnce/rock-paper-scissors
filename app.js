@@ -2,7 +2,7 @@ const buttons = document.querySelectorAll(".btn");
 const container = document.querySelector(".container");
 const computerScoreNum = document.querySelector(".computer-score-num");
 const resetBtn = document.querySelector(".play-again-btn");
-const roundResult = document.querySelector(".round-result");
+const gameResult = document.querySelector(".round-result");
 const storePlayerScore = document.querySelector(".player-score");
 const storeComputerScore = document.querySelector(".computer-score");
 const playerScoreNum = document.querySelector(".player-score-num");
@@ -10,8 +10,8 @@ const modal = document.querySelector(".modal");
 const infoIcon = document.querySelector(".ph-info");
 const crossIcon = document.querySelector(".ph-x-circle");
 
-const computerGameResult = document.createElement("h3");
-const playerGameResult = document.createElement("h3");
+// const computerGameResult = document.createElement("h3");
+// const playerGameResult = document.createElement("h3");
 
 let playerScore = 0;
 let computerScore = 0;
@@ -55,19 +55,17 @@ function playRound(playerSelection, computerSelection) {
 // Game function handles scores, results and amount of rounds to play
 function game() {
   if (playerScore === 5) {
-    playerGameResult.textContent = "Well played, you win!";
-    container.appendChild(playerGameResult);
+    gameResult.textContent = "Well played, you win!";
     gameEnded = true;
     resetBtn.classList.remove("hidden");
     resetBtn.style.visibility = "visible";
-    // playerScoreNum.textContent = playerScore;
+    gameResult.style.color = "#72bd9e";
   } else if (computerScore === 5) {
-    computerGameResult.textContent = "You lose, better luck next time!";
-    container.appendChild(computerGameResult);
+    gameResult.textContent = "You lose, better luck next time!";
     gameEnded = true;
     resetBtn.classList.remove("hidden");
     resetBtn.style.visibility = "visible";
-    // computerScoreNum.textContent = playerScore;
+    gameResult.style.color = "#f0ca42";
   }
 }
 
@@ -87,12 +85,9 @@ resetBtn.addEventListener("click", () => {
     playerScoreNum.textContent = playerScore;
     computerScoreNum.textContent = computerScore;
 
-    if (playerGameResult && playerGameResult.parentNode) {
-      playerGameResult.parentNode.removeChild(playerGameResult);
-    }
-
-    if (computerGameResult && computerGameResult.parentNode) {
-      computerGameResult.parentNode.removeChild(computerGameResult);
+    if (gameResult) {
+      gameResult.textContent = "Make a choice to start!";
+      gameResult.style.color = "#fff";
     }
     gameEnded = false;
     resetBtn.classList.add("hidden");
@@ -109,7 +104,7 @@ buttons.forEach((button) => {
       const result = playRound(playerSelection, computerSelection);
 
       // Update the h3 in index.html with the result
-      roundResult.textContent = result;
+      gameResult.textContent = result;
 
       // Allocates scores to relevant players
       if (result.includes("win")) {

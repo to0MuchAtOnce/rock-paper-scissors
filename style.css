@@ -60,7 +60,7 @@ body {
 }
 
 .cross-icon {
-  font-size: 2.5rem;
+  font-size: 2rem;
 }
 
 .info-icon {
@@ -106,7 +106,7 @@ body {
   margin: 0 auto;
   margin-top: 15.3rem;
   padding: 40px;
-  border: 1px solid #888;
+  border: 0.5px solid #888;
   border-radius: 12px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.22);
   width: 80%;
@@ -126,7 +126,7 @@ body {
 .modal-para-1,
 .modal-para-2,
 .modal-para-3 {
-  font-size: 18px;
+  font-size: 17px;
   margin-bottom: 1rem;
 }
 
