@@ -1,10 +1,288 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;600&display=swap");
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+html {
+  max-width: 1097px;
+  margin: 0 auto;
+}
+
+:root {
+  --white: #fff;
+  --light-green: #72bd9e;
+  --mid-grey: #9d9d9d;
+  --bg: #272727;
+  --overlay: rgba(255, 255, 255, 0.11);
+  --mid-yellow: #f0ca42;
+  --salmon: #f59c80;
+}
+
 body {
-  background: #272931;
-  color: #bab4b4;
+  background: var(--bg);
+  color: var(--white);
+  font-family: "Inter";
+  font-weight: 400;
+  min-width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.25rem;
+  font-weight: 300;
+  margin: 1.5rem;
+}
+
+.header .logo {
+  cursor: default;
+}
+
+.header .logo-rock {
+  color: var(--light-green);
+}
+
+.header .logo-seperator {
+  color: var(--mid-grey);
+}
+
+.header .logo-paper {
+  color: var(--white);
+}
+
+.header .logo-scissors {
+  color: var(--mid-yellow);
+}
+
+.cross-icon {
+  font-size: 2rem;
+}
+
+.info-icon {
+  font-size: 2rem;
+}
+
+.cross-icon,
+.info-icon {
+  color: var(--mid-grey);
+}
+
+.ph-x-circle,
+.ph-info {
+  cursor: pointer;
+}
+
+.ph-x-circle:hover,
+.ph-info:hover {
+  color: var(--white);
+  transition: 0.15s ease-in-out;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(46, 46, 46, 0.719);
+}
+
+.modal-content {
+  background-color: var(--bg);
+  margin: 0 auto;
+  margin-top: 15.3rem;
+  padding: 40px;
+  border: 0.5px solid #888;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.22);
+  width: 80%;
+  max-width: 682px;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.modal-heading {
+  font-size: 26px;
+  margin-bottom: 3rem;
+}
+
+.modal-para-1,
+.modal-para-2,
+.modal-para-3 {
+  font-size: 17px;
+  margin-bottom: 1rem;
+}
+
+.heading-1 {
+  text-align: center;
+  margin-top: 10rem;
+}
+
+.reset-game {
+  display: flex;
+  justify-content: center;
+}
+
+.play-again-btn {
+  background: var(--salmon);
+  font-size: 18px;
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 1rem 1.8rem;
+  margin: 2.5rem 0;
+  visibility: hidden;
+}
+
+.play-again-btn .hidden {
+  display: none;
+}
+
+.play-again-btn:active {
+  transform: scale(0.98);
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10rem;
+  margin-bottom: 5rem;
+}
+
+.btn {
+  cursor: pointer;
+  font-size: 120px;
+  background: 0;
+  border: 0;
+}
+
+.btn-rock:active {
+  transform: scale(1.05);
+}
+
+.btn-paper {
+  transform: rotate(240deg);
+}
+
+.btn-paper:active {
+  transform: rotate(240deg) scale(1.05);
+}
+
+.btn-scissors {
+  transform: rotate(-30deg);
+}
+
+.btn-scissors:active {
+  transform: rotate(-30deg) scale(1.05);
+}
+
+.btn:hover {
+  opacity: 0.8;
+}
+
+.score-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 5rem;
+}
+
+.player-score .player-score-label {
+  color: var(--light-green);
+}
+
+.computer-score .computer-score-label {
+  color: var(--mid-yellow);
+}
+
+.player-score-label,
+.computer-score-label {
+  font-size: 18px;
+}
+
+.player-score-num,
+.computer-score-num {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--mid-grey);
+  width: 56px;
+  border-radius: 8px;
+  color: var(--mid-grey);
+  padding: 2rem;
+  font-size: 28px;
+}
+
+@media screen and (max-width: 700px) {
+  .heading-1 {
+    font-size: 30px;
+  }
+
+  .play-again-btn {
+    padding: 0.75rem 1.2rem;
+  }
+
+  .buttons {
+    gap: 4rem;
+  }
+
+  .buttons,
+  .btn {
+    font-size: 90px;
+  }
+
+  .player-score-label,
+  .computer-score-label {
+    font-size: 16px;
+  }
+
+  .player-score-num,
+  .computer-score-num {
+    padding: 1.5rem;
+  }
+
+  .score-container {
+    margin: 3rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .heading-1 {
+    font-size: 28px;
+  }
+
+  .buttons,
+  .btn {
+    font-size: 80px;
+  }
+}
+
+@media screen and (max-width: 470px) {
+  .buttons,
+  .btn {
+    font-size: 70px;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .buttons,
+  .btn {
+    font-size: 60px;
+  }
 }

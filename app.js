@@ -1,75 +1,124 @@
+const buttons = document.querySelectorAll(".btn");
+const container = document.querySelector(".container");
+const computerScoreNum = document.querySelector(".computer-score-num");
+const resetBtn = document.querySelector(".play-again-btn");
+const gameResult = document.querySelector(".round-result");
+const storePlayerScore = document.querySelector(".player-score");
+const storeComputerScore = document.querySelector(".computer-score");
+const playerScoreNum = document.querySelector(".player-score-num");
+const modal = document.querySelector(".modal");
+const infoIcon = document.querySelector(".ph-info");
+const crossIcon = document.querySelector(".ph-x-circle");
+
+// const computerGameResult = document.createElement("h3");
+// const playerGameResult = document.createElement("h3");
+
+let playerScore = 0;
+let computerScore = 0;
+let gameEnded = false;
+
 // Choice array which stores the values that the computer has to choose from
-const choice = ['rock', 'paper', 'scissors'];
+const choice = ["👊", "🫱", "✌️"];
 
 // Randomly returns an item from the 'choice' array.
 function getComputerChoice() {
-    const random = Math.floor(Math.random() * choice.length);
-    const computerSelection = choice[random];
-    console.log('Computer:', computerSelection);
-    return computerSelection;
+  const random = Math.floor(Math.random() * choice.length);
+  const computerSelection = choice[random];
+  return computerSelection;
 }
 
-// Play 1 round of the game
+const emojiToWord = {
+  "👊": "rock",
+  "🫱": "paper",
+  "✌️": "scissors",
+};
+
 function playRound(playerSelection, computerSelection) {
-    // Convert all user input to lower case, making it possible for user to type captial letters
-    const lowerCasePlayerSelection = playerSelection.toLowerCase();
-    // Main game logic compares both answers and returns relevant statement
-    if (lowerCasePlayerSelection === computerSelection) {
-        return "It's a draw";
-    } else if (
-        (lowerCasePlayerSelection === 'rock' &&
-            computerSelection === 'scissors') ||
-        (lowerCasePlayerSelection === 'paper' &&
-            computerSelection === 'rock') ||
-        (lowerCasePlayerSelection === 'scissors' &&
-            computerSelection === 'paper')
-    ) {
-        // Returns concatenation of the completed round
-        return (
-            'You win, ' +
-            lowerCasePlayerSelection +
-            ' beats ' +
-            computerSelection
-        );
-    } else {
-        return (
-            'You loose, ' +
-            computerSelection +
-            ' beats ' +
-            lowerCasePlayerSelection
-        );
-    }
+  const lowerCasePlayerSelection = playerSelection.toLowerCase();
+  const playerChoiceWord = emojiToWord[lowerCasePlayerSelection];
+  const computerChoiceWord = emojiToWord[computerSelection];
+
+  if (lowerCasePlayerSelection === computerSelection) {
+    return "It's a draw";
+  } else if (
+    (lowerCasePlayerSelection === "👊" && computerSelection === "✌️") ||
+    (lowerCasePlayerSelection === "🫱" && computerSelection === "👊") ||
+    (lowerCasePlayerSelection === "✌️" && computerSelection === "🫱")
+  ) {
+    // Returns concatenation of the completed round as template literals
+    return `You win, ${playerChoiceWord} beats ${computerChoiceWord}`;
+  } else {
+    return `You lose, ${computerChoiceWord} beats ${playerChoiceWord}`;
+  }
 }
 
 // Game function handles scores, results and amount of rounds to play
 function game() {
-    // Variables for scoring
-    let playerScore = 0;
-    let computerScore = 0;
-    const results = [];
-    console.log(results);
-
-    // First player to 5 points wins based on the below condition
-    while (playerScore < 5 && computerScore < 5) {
-        const playerSelection = prompt('Rock, paper or scissors?');
-        const computerSelection = getComputerChoice();
-        const roundResult = playRound(playerSelection, computerSelection);
-        results.push(roundResult);
-
-        // Allocates scores to relevant players
-        if (roundResult.includes('win')) {
-            playerScore++;
-            results.push('Player score:', playerScore);
-        } else if (roundResult.includes('loose')) {
-            computerScore++;
-            results.push('Computer score:', playerScore);
-        }
-    }
-    // Log the final results
-    console.log(
-        `Final score: Player ${playerScore} - Computer ${computerScore}`
-    );
+  if (playerScore === 5) {
+    gameResult.textContent = "Well played, you win!";
+    gameEnded = true;
+    resetBtn.classList.remove("hidden");
+    resetBtn.style.visibility = "visible";
+    gameResult.style.color = "#72bd9e";
+  } else if (computerScore === 5) {
+    gameResult.textContent = "You lose, better luck next time!";
+    gameEnded = true;
+    resetBtn.classList.remove("hidden");
+    resetBtn.style.visibility = "visible";
+    gameResult.style.color = "#f0ca42";
+  }
 }
 
-// Calls the game function
+infoIcon.addEventListener("click", () => {
+  modal.style.display = "block";
+});
+
+crossIcon.addEventListener("click", () => {
+  modal.style.display = "none";
+});
+
+// Resets scores to 0 and unappends game ended message
+resetBtn.addEventListener("click", () => {
+  if (gameEnded) {
+    playerScore = 0;
+    computerScore = 0;
+    playerScoreNum.textContent = playerScore;
+    computerScoreNum.textContent = computerScore;
+
+    if (gameResult) {
+      gameResult.textContent = "Make a choice to start!";
+      gameResult.style.color = "#fff";
+    }
+    gameEnded = false;
+    resetBtn.classList.add("hidden");
+    resetBtn.style.visibility = "hidden";
+  }
+});
+
+// Handles player and computer choices.
+buttons.forEach((button) => {
+  button.addEventListener("click", () => {
+    if (!gameEnded) {
+      const playerSelection = button.textContent;
+      const computerSelection = getComputerChoice();
+      const result = playRound(playerSelection, computerSelection);
+
+      // Update the h3 in index.html with the result
+      gameResult.textContent = result;
+
+      // Allocates scores to relevant players
+      if (result.includes("win")) {
+        playerScore++;
+        playerScoreNum.textContent = playerScore;
+      } else if (result.includes("lose")) {
+        computerScore++;
+        computerScoreNum.textContent = computerScore;
+      }
+      if (playerScore === 5 || computerScore === 5) {
+        gameEnded = true;
+        game();
+      }
+    }
+  });
+});
 game();
